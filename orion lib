@@ -1606,7 +1606,7 @@ function ElementFunction:AddPlayerDropdown(Config)
     function Dropdown:Set()
         local selectedUsernames = {}
         for p in pairs(self.SelectedPlayers) do
-            if Players:FindFirstChild(p.Name) then
+            if p and p.Parent == Players then
                 table.insert(selectedUsernames, p.Name)
             else
                 self.SelectedPlayers[p] = nil
