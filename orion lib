@@ -1639,7 +1639,10 @@ function ElementFunction:AddPlayerDropdown(Config)
     end
 
     Players.PlayerAdded:Connect(updateList)
-    Players.PlayerRemoving:Connect(updateList)
+    Players.PlayerRemoving:Connect(function(player)
+        Dropdown.SelectedPlayers[player] = nil
+        updateList()
+    end)
 
     updateList()
     if Config.Flag then OrionLib.Flags[Config.Flag] = Dropdown end
